@@ -25,7 +25,3 @@ You can also customize the Dockerfile to add any additional dependencies or conf
 
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
-            "sourceId": 12345
-        }
-    }
-  '
