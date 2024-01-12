@@ -13,5 +13,8 @@ or
 
 ### Run through docker
 
-# run dockerfile
+# build dockerfile to image
 docker build -t social_media_db .
+
+# run docker image
+docker run -d social_media_db
