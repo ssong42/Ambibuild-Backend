@@ -17,4 +17,4 @@ or
 docker build -t social_media_db .
 
 # run docker image
-docker run -d social_media_db
+docker run -d -p 5432:5432 social_media_db
