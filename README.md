@@ -40,53 +40,6 @@ You can also customize the Dockerfile to add any additional dependencies or conf
 
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
-curl "https://api.sandbox.prodigi.com/v4.0/Orders" \
-  -X POST \
-  -H "X-API-Key: your-api-key" \
-  -H "Content-Type: application/json" \
-  -d '
-    {
-        "merchantReference": "MyMerchantReference1",
-        "shippingMethod": "Overnight",
-        "recipient": {
-            "name": "Mr Testy McTestface",
-            "address": {
-                "line1": "14 test place",
-                "line2": "test",
-                "postalOrZipCode": "12345",
-                "countryCode": "US",
-                "townOrCity": "somewhere",
-                "stateOrCounty": null
-            }
-        },
-        "items": [
-            {
-                "merchantReference": "item #1",
-                "sku": "GLOBAL-CFPM-16X20",
-                "copies": 1,
-                "sizing": "fillPrintArea",
-                "attributes": {
-                    "color": "black"
-                },
-                "recipientCost": {
-                    "amount": "15.00",
-                    "currency": "USD"
-                },
-                "assets": [
-                    {
-                        "printArea": "default",
-                        "url": "https://pwintyimages.blob.core.windows.net/samples/stars/test-sample-grey.png",
-                        "md5Hash": "daa1c811c6038e718a23f0d816914b7b"
-                    }
-                ]
-            }
-        ],
-        "metadata": {
-            "mycustomkey":"some-guid",
-            "someCustomerPreference": {
-                "preference1": "something",
-                "preference2": "red"
-            },
             "sourceId": 12345
         }
     }
