@@ -1,4 +1,4 @@
-#Synthwear Backend
+#Social Media Backend
 
 #Node.js App with Docker and Local Database
 This is a simple Node.js app that can be run inside a Docker container and uses a local database.
@@ -10,11 +10,9 @@ This app provides a basic framework for a web application that allows users to b
 
   Posts Feed: Displays a list of posts with photo and user that posted it.
 
-  Shopping Cart: Allows customers to add products to a shopping cart and adjust the quantity of each item.
+  Users can like posts.
 
-  Checkout: Lets customers complete their purchase by entering their shipping address and payment details.
-
-  Order History: Displays a list of past orders for each customer, including the order date, order status, and details about each item purchased.
+  Users can comment on posts.
 
 #Prerequisites
 Before you begin, make sure you have the following installed on your machine:
