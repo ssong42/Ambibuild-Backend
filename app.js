@@ -9,9 +9,15 @@ app.get('/', (req, res) => {
 // routes
 const posts = require('./routers/posts');
 const users = require('./routers/users');
+const likes = require('./routers/likes');
+const comments = require('./routers/comments');
 
-app.use(posts);
-app.use(users);
+
+app.use('/posts', posts);
+app.use('/users', users);
+app.use('/likes', likes);
+app.use('/comments', comments);
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
