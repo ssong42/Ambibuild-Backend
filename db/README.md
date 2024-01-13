@@ -1,27 +1,14 @@
-### Run through brew
+# How to setup the database
 
-# install postgres through brew
-brew install postgres
+### build dockerfile to image
+```docker build -t social_media_db .```
 
-# run the damn thing
-brew services start postgresql@14
+### run docker image
+```docker run -d -p 5432:5432 social_media_db```
 
-# check if postgress is working
-psql -d postgres
+# Run Liquidbase
 
-or
-
-### Run through docker
-
-# build dockerfile to image
-docker build -t social_media_db .
-
-# run docker image
-docker run -d -p 5432:5432 social_media_db
-
-
-### How to run liquidbase
-
+```
 brew install liquibase
 liquidbase status
 liquibase update
