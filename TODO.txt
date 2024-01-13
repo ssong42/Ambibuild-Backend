@@ -1,0 +1,14 @@
+Things that need to be done for backend
+
+add user authentication
+add photo upload for when a post is created
+
+
+
+
+Things that need to be done for front end
+
+create a feed page (homepage)
+create a top nav bar
+create a footer
+create 
