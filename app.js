@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -11,8 +11,9 @@ const posts = require('./routers/posts');
 const users = require('./routers/users');
 const likes = require('./routers/likes');
 const comments = require('./routers/comments');
+const test = require('./routers/test');
 
-
+app.use('/test', test);
 app.use('/posts', posts);
 app.use('/users', users);
 app.use('/likes', likes);
