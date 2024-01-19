@@ -11,9 +11,9 @@ const posts = require('./routers/posts');
 const users = require('./routers/users');
 const likes = require('./routers/likes');
 const comments = require('./routers/comments');
-const test = require('./routers/test');
+const ticket = require('./routers/tickets');
 
-app.use('/test', test);
+app.use('/tickets', ticket);
 app.use('/posts', posts);
 app.use('/users', users);
 app.use('/likes', likes);
