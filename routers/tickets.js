@@ -1,7 +1,9 @@
 // likesRouter.js
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const router = express.Router();
+router.use(bodyParser.json());
 
 let data = [
   {
@@ -54,8 +56,7 @@ router.post('/', async (req, res) => {
   try {
     let newTicket = {title, body, priority, user_email}
     data.push(newTicket)
-
-    res.json(rnewTicket);
+    res.json(newTicket);
   } catch (error) {
     console.error('Error creating like:', error);
     res.status(500).json({ error: 'Internal Server Error' });

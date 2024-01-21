@@ -2,6 +2,18 @@ const { Router } = require("express");
 const bodyParser = require('body-parser');
 const pool = require('../db'); // Import the database connection
 const router = Router();
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/")
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname)
+  },
+})
+
+const upload = multer({storage: storage})
 
 // Parse JSON request bodies
 router.use(bodyParser.json());
@@ -53,22 +65,22 @@ router.get('/posts/:postId', async (req, res) => {
   }
 });
 
-// Endpoint to create a new post
-router.post('/', async (req, res) => {
-  const { user_id, title, description, photo_url } = req.body;
+// // Endpoint to create a new post
+// router.post('/', async (req, res) => {
+//   const { user_id, title, description, photo_url } = req.body;
 
-  try {
-    const result = await pool.query(
-      'INSERT INTO posts (user_id, title, description, photo_url) VALUES ($1, $2, $3, $4) RETURNING *',
-      [user_id, title, description, photo_url]
-    );
+//   try {
+//     const result = await pool.query(
+//       'INSERT INTO posts (user_id, title, description, photo_url) VALUES ($1, $2, $3, $4) RETURNING *',
+//       [user_id, title, description, photo_url]
+//     );
 
-    res.json(result.rows[0]);
-  } catch (error) {
-    console.error('Error creating post:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+//     res.json(result.rows[0]);
+//   } catch (error) {
+//     console.error('Error creating post:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
 
 // Endpoint to update a post
 router.put('/:postId', async (req, res) => {
@@ -92,5 +104,22 @@ router.put('/:postId', async (req, res) => {
   }
 });
 
+router.post('/', upload.array('photos', 3), async (req, res) => {
+  console.log(req.files);
+
+  const { user_id, title, description } = req.body;
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO posts (user_id, title, description, photo_url) VALUES ($1, $2, $3, $4) RETURNING *',
+      [user_id, title, description, req.files[0].filename]
+    );
+
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Error creating post:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
   
 module.exports = router;
