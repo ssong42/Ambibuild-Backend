@@ -10,8 +10,17 @@ CREATE TABLE photos (
 ALTER TABLE posts
 DROP COLUMN photo_url;
 
--- Insert posts
-INSERT INTO photos (photo_id, post_id, photo_url) VALUES
-  (1, 1, '1705869868856-IMG_4627.jpg'),
-  (2, 2, '1705869868859-IMG_3713.jpg'),
-  (3, 3, '1705871131326-IMG_4627.jpg');
+-- Insert photos
+INSERT INTO photos (post_id, photo_url) VALUES
+    (1, 'basic-setup.webp'),
+    (2, 'cool-setup.webp'),
+    (3, 'cool-setup2.webp'),
+    (4, 'cool-setup3.webp'),
+    (5, 'dark-setup.webp'),
+    (6, 'dark-setup2.webp'),
+    (7, 'minimal-setup.jpeg'),
+    (8, 'minimal-setup2.webp'),
+    (9, 'nature-setup.webp'),
+    (10, 'organized-setup.webp'),
+    (11, 'red-setup2.webp'),
+    (12, 'white-setup.webp');
