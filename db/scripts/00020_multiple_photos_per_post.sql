@@ -22,5 +22,5 @@ INSERT INTO photos (post_id, photo_url) VALUES
     (8, 'minimal-setup2.webp'),
     (9, 'nature-setup.webp'),
     (10, 'organized-setup.webp'),
-    (11, 'red-setup2.webp'),
+    (11, 'red-setup1.webp'),
     (12, 'white-setup.webp');
