@@ -22,7 +22,7 @@ router.use(bodyParser.json());
 router.get("/", async (req, res) => {
   try {
     const result = await pool.query(
-      'SELECT p.*, u.username, array_agg(ph.photo_url) AS photo_urls FROM posts p LEFT JOIN photos ph ON p.post_id = ph.post_id LEFT JOIN users u ON p.user_id = u.user_id GROUP BY p.post_id, u.user_id ORDER BY p.created_at desc'
+      'SELECT p.*, u.username, array_agg(ph.photo_url) AS photo_urls, COUNT(l.like_id) AS like_count FROM  posts p LEFT JOIN  photos ph ON p.post_id = ph.post_id LEFT JOIN  users u ON p.user_id = u.user_id LEFT JOIN  likes l ON p.post_id = l.post_id GROUP BY  p.post_id, u.user_id ORDER BY  p.created_at DESC'
     );
 
     res.json(result.rows);
@@ -38,7 +38,7 @@ router.get("/:postId", async (req, res) => {
   console.log(postId);
   try {
     const result = await pool.query(
-      "SELECT p.*, u.user_id, array_agg(ph.photo_url) AS photo_urls FROM posts p LEFT JOIN users u ON p.user_id = u.user_id LEFT JOIN photos ph ON p.post_id = ph.post_id WHERE p.post_id = $1 GROUP BY p.post_id, u.user_id",
+      "SELECT p.*, u.user_id, array_agg(ph.photo_url) AS photo_urls, COUNT(l.like_id) AS like_count  FROM posts p LEFT JOIN users u ON p.user_id = u.user_id LEFT JOIN photos ph ON p.post_id = ph.post_id LEFT JOIN likes l ON p.post_id = l.post_id WHERE p.post_id = $1 GROUP BY p.post_id, u.user_id",
       [postId]
     );
 
