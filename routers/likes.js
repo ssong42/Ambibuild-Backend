@@ -1,8 +1,10 @@
 // likesRouter.js
 const express = require('express');
+const bodyParser = require("body-parser");
 const pool = require('../db'); // Import the database connection
 
 const router = express.Router();
+router.use(bodyParser.json());
 
 // Endpoint to create a new like
 router.post('/', async (req, res) => {

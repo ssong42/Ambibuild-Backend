@@ -32,6 +32,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Route to fetch featured builds
+router.get('/featured', async (req, res) => {
+  try {
+    // Query database for featured builds
+    const featuredBuilds = await pool.query('SELECT p.*, u.username, array_agg(ph.photo_url) AS photo_urls, COUNT(l.like_id) AS like_count FROM  posts p LEFT JOIN  photos ph ON p.post_id = ph.post_id LEFT JOIN  users u ON p.user_id = u.user_id LEFT JOIN  likes l ON p.post_id = l.post_id where p.is_featured = true GROUP BY  p.post_id, u.user_id ORDER BY  p.created_at DESC');
+
+    // Return featured builds as JSON response
+    res.json(featuredBuilds.rows);
+  } catch (error) {
+    console.error('Error fetching featured builds:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 router.get("/:postId", async (req, res) => {
   const postId = req.params.postId;
 
@@ -52,6 +66,7 @@ router.get("/:postId", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 // Endpoint to update a post
 router.put("/:postId", async (req, res) => {

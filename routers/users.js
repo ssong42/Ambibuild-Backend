@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const pool = require('../db'); // Import the database connection
+const bodyParser = require("body-parser");
 const router = Router();
+router.use(bodyParser.json());
 
 // Get all available items
 router.get('/', async (req, res) => {

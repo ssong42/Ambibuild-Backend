@@ -1,8 +1,10 @@
 // commentsRouter.js
 const express = require('express');
 const pool = require('../db'); // Import the database connection
+const bodyParser = require("body-parser");
 
 const router = express.Router();
+router.use(bodyParser.json());
 
 // Endpoint to create a new comment
 router.post('/', async (req, res) => {
